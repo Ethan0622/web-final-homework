@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科普小课堂</title>
+    <script src="lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="src/css/default.css">
+    <link rel="stylesheet" href="lib/bootstrap.css">
+
+    <style>
+        .container {
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: antiquewhite;
+        }
+
+        #sign-area, #login-area {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="logo-area">logo预留区域</div>
+        <div class="items-area">
+            <a>首页</a>
+            <a>关于我们</a>
+            <a>资源下载</a>
+        </div>
+        <div class="login-area">
+            <a style="border-right: 2px solid black;" id="show-login">登录</a>
+            <a id="show-sign">注册</a>
+        </div>
+    </nav>
+
+    <div class="container" id="login-area">
+        <label>
+            用户名：
+            <input type="text" class="form-control" name="username" id="login-name" />
+        </label>
+        <label>
+            密码：
+            <input type="password" class="form-control" name="pwd" id="login-pwd" />
+        </label>
+        </br>
+        <input type="button" value="登录" class="btn btn-primary" id="login" />
+    </div>
+
+    <div class="container" id="sign-area">
+        <label>
+            用户名：
+            <input type="text" class="form-control" name="username" id="sign-name" />
+        </label>
+        <label>
+            密码：
+            <input type="password" class="form-control" name="pwd" id="sign-pwd" />
+        </label>
+        <label>
+            确认密码：
+            <input type="password" class="form-control" name="pwd" id="sign-repwd" />
+        </label>
+        </br>
+        <input type="button" value="登录" class="btn btn-primary" id="login" />
+    </div>
+</body>
+
+<script>
+    $('#show-login').click(() => {
+        $('#login-area').show()
+        $('#sign-area').hide()
+    })
+
+    $('#login').click(() => {
+        if ($(" #login-name").val() != '' && $(" #login-pwd ").val() != '') {
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json;charset=UTF-8",
+                url: '/api/webusers/loginin',
+                data: JSON.stringify({
+                    username: $(" #login-name").val(),
+                    password: $(" #login-pwd ").val()
+                }),
+                success: function (result) {
+                    if (result.status == 200) {
+                        alert('登录成功！')
+                    }
+                    else {
+                        alert('用户名或密码错误');
+                    }
+                },
+                error: function (err) {
+                    alert('服务器未响应');
+                }
+            })
+        }
+    })
+
+    $('#show-sign').click(() => {
+        $('#login-area').hide()
+        $('#sign-area').show()
+    })
+
+    $('#sign').click(() => {
+        if ($("#sign_name").val() != '' && $("#sign_pwd").val() != '' && $("#sign_repwd").val() != '') {
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json;charset=UTF-8",
+                url: '/api/webusers/sign',
+                data: JSON.stringify({
+                    username: $("#sign-name").val(),
+                    password: $("#sign-pwd").val(),
+                    repassword: $("#sign-repwd").val()
+                }),
+                success: function (result) {
+                    if (result.status == 200) {
+                        alert("注册成功!")
+                    }
+                    else {
+                        alert("注册失败")
+                    }
+                },
+                error: function (err) {
+                    alert("服务器未响应");
+                }
+            })
+        }
+    })
+
+</script>
+
+</html>
