@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="src/css/default.css">
     <!-- <link rel="stylesheet" href="lib/bootstrap.css"> -->
 
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
     <style>
         .container {
             width: 400px;
@@ -43,100 +47,161 @@
         </div>
     </nav>
 
-    <div class="container" id="login-area">
-        <label>
-            用户名：
-            <input type="text" class="form-control" name="username" id="login-name" />
-        </label>
-        <label>
-            密码：
-            <input type="password" class="form-control" name="pwd" id="login-pwd" />
-        </label>
-        </br>
-        <input type="button" value="登录" class="btn btn-primary" id="login" />
-    </div>
-
-    <div class="container" id="sign-area">
-        <label>
-            用户名：
-            <input type="text" class="form-control" name="username" id="sign-name" />
-        </label>
-        <label>
-            密码：
-            <input type="password" class="form-control" name="pwd" id="sign-pwd" />
-        </label>
-        <label>
-            确认密码：
-            <input type="password" class="form-control" name="pwd" id="sign-repwd" />
-        </label>
-        </br>
-        <input type="button" value="注册" class="btn btn-primary" id="sign" />
-    </div>
-
-    <div id="banner">
-        <transition-group tag="ul" class="images-area" :name="direction">
-            <li v-for="(list,index) in imagelist" :key="index" v-show="index===currentIndex" @mouseenter="clearTimer"
-                @mouseleave="startTimer">
-                <a :href="list.clickUrl">
-                    <img :src="list.image" :alt="list.desc">
-                </a>
-            </li>
-        </transition-group>
-        <div class="select-dot">
-            <ul>
-                <li v-for="(items,index) in imagelist" :key="index" @click='gotoimage(index), clearTimer()'
-                    :class="['dot',{'Selected':currentIndex == index}]"></li>
-            </ul>
-        </div>
-        <div class="sidebar sidebar-left" @click='gotoimage(preIndex), clearTimer()'>&lt;</div>
-        <div class="sidebar sidebar-right" @click='gotoimage(nextIndex), clearTimer()'>&gt;</div>
-    </div>
-
-    <div class="select-module">
-        <button>学习天地</button>
-        <button>科普中心</button>
-    </div>
-
-    <div class="learn-area">
-        <div class="title">
-            <img src="assets/images/zoom-logo.png" alt="放大镜">
-            学习天地 ———
+    <main>
+        <div class="container" id="login-area">
+            <label>
+                用户名：
+                <input type="text" class="form-control" name="username" id="login-name" />
+            </label>
+            <label>
+                密码：
+                <input type="password" class="form-control" name="pwd" id="login-pwd" />
+            </label>
+            </br>
+            <input type="button" value="登录" class="btn btn-primary" id="login" />
         </div>
 
-        <div class="learn-items">
-            <div>
-                <img src="assets/images/bg-video.png" /><p>学习视频</p>
-            </div>
-            <div>
-                <img src="assets/images/bg-book.png" /><p>学习教材</p>
-            </div>
-            <div>
-                <img src="assets/images/bg-ppt.png" /><p>学习PPT</p>
-            </div>
-            <div>
-                <img src="assets/images/bg-3d.png" /><p>3D实验室</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="science-area">
-        <div class="title">
-            <img src="assets/images/zoom-logo.png" alt="放大镜">
-            科普中心 ———
+        <div class="container" id="sign-area">
+            <label>
+                用户名：
+                <input type="text" class="form-control" name="username" id="sign-name" />
+            </label>
+            <label>
+                密码：
+                <input type="password" class="form-control" name="pwd" id="sign-pwd" />
+            </label>
+            <label>
+                确认密码：
+                <input type="password" class="form-control" name="pwd" id="sign-repwd" />
+            </label>
+            </br>
+            <input type="button" value="注册" class="btn btn-primary" id="sign" />
         </div>
 
-        <div class="science-items">
-            <div>
-                <img src="assets/images/bg-geography.png" />
+        <div id="elem">
+            <el-carousel :height="height">
+                <el-carousel-item v-for="item in imagelist" :key="item.desc">
+                    <img :src="item.image" alt="图片" width="100%;" ref='image'>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+
+        <div id="banner">
+            <transition-group tag="ul" class="images-area" :name="direction">
+                <li v-for="(list,index) in imagelist" :key="index" v-show="index===currentIndex"
+                    @mouseenter="clearTimer" @mouseleave="startTimer">
+                    <a :href="list.clickUrl">
+                        <img id="banner-img" :src="list.image" :alt="list.desc" width="100%;">
+                    </a>
+                </li>
+            </transition-group>
+            <div class="select-dot">
+                <ul>
+                    <li v-for="(items,index) in imagelist" :key="index" @click='gotoimage(index), clearTimer()'
+                        :class="['dot',{'Selected':currentIndex == index}]"></li>
+                </ul>
             </div>
-            <div>
-                <img src="assets/images/bg-animal.png" />
+            <div class="sidebar sidebar-left" @click='gotoimage(preIndex), clearTimer()'>&lt;</div>
+            <div class="sidebar sidebar-right" @click='gotoimage(nextIndex), clearTimer()'>&gt;</div>
+        </div>
+
+        <div class="select-module">
+            <button>学习天地</button>
+            <button>科普中心</button>
+        </div>
+
+        <div class="learn-area">
+            <div class="title">
+                <img src="assets/images/zoom-logo.png" alt="放大镜">
+                学习天地 ———
             </div>
-            <div>
-                <img src="assets/images/bg-body.png" />
+
+            <div class="learn-items">
+                <div class="learn-item">
+                    <img src="assets/images/bg-video.png" />
+                    <p>学习视频</p>
+                </div>
+                <div class="learn-item">
+                    <img src="assets/images/bg-book.png" />
+                    <p>学习教材</p>
+                </div>
+                <div class="learn-item">
+                    <img src="assets/images/bg-ppt.png" />
+                    <p>学习PPT</p>
+                </div>
+                <div class="learn-item">
+                    <img src="assets/images/bg-3d.png" />
+                    <p>3D实验室</p>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="science-area">
+            <div class="title">
+                <img src="assets/images/zoom-logo.png" alt="放大镜">
+                科普中心 ———
+            </div>
+
+            <div class="science-items">
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-geography.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>来看看这些地理小知识，你知道几个呢？</p>
+                        <p> 1、非洲的冬天很冷的，不要只看经纬度，却忘了海拔。
+                            2、贝加尔湖是世界最深的湖泊，最大深度可达到1642米，平均深度758米，水体总容积23600立方千米，相当于北美洲五大湖水量的总和，超过整个波罗的海的...<a>[更多]</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-animal.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>这些有趣的动物冷知识，你听说过吗？</p>
+                        <p>1、河马的汗水就是天然的防晒乳 2 、蝌蚪宝宝比他老爸妈还要巨大（网友补充：这是一种特别的青蛙叫做“Paradoxical Frog”，只有这种青蛙的蝌蚪才会比爸妈大喔） 3、
+                            长颈鹿的舌头可以舔到自己耳...<a>[更多]</a></p>
+                    </div>
+                </div>
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-body.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>你的体内还蕴藏着这些奥秘，你看过哪些？</p>
+                        <p>1、每三四天，胃里就会更换一次内衬粘膜,胃里边的内表面所拥有的内衬粘膜被称为胃粘膜。粘膜总是被一层高大的柱状上皮细胞分泌的粘液覆盖。胃粘液是一种糖蛋白，具有两个作用：润滑食物团以促进胃内的...<a>[更多]</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="science-more">
+                    <a>更多</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-area">
+            <p>狐说科普网由四名优秀人员倾尽脑洞设计制作，由优秀教师徐光涛教习指导，内容丰富多样，既展现了当代年轻人的活力与创造力，也展现了教师的优秀教学能力！
+                网站涵盖“学习天地”与“科普中心”两大块内容，规划明晰，制作精良。网站命名幽默风趣，意为“胡说八道”，直观道出本网站的精髓，是学习网站的不二选择！
+            </p>
+        </div>
+
+        <div class="contact-area">
+            <div class="contact-info">
+                <p>联系我们 ——</p>
+                <p>邮箱： 15372090638@163.com</p>
+                <p>电话： 15372090638</p>
+            </div>
+            <div class="contact-img">
+                <img src="assets/images/wechat-code.png" alt="客服微信" />
+                <p>客服微信</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>@狐说八道组</p>
+    </footer>
 </body>
 
 <script>
@@ -239,8 +304,8 @@
         methods: {
             autoswitch() {
                 this.timer = setInterval(() => {
-                    this.direction = 'left'
-                    this.gotoimage(this.nextIndex)
+                    // this.direction = 'left'
+                    // this.gotoimage(this.nextIndex)
                 }, 2000)
             },
             gotoimage(index) {

@@ -3,6 +3,52 @@
   padding: 0;
 }
 
+html {
+  font-size: 10px;
+}
+
+@media only screen and (max-width: 1280px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  html {
+    font-size: 7px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 6px;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  html {
+    font-size: 5px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  html {
+    font-size: 4px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  html {
+    font-size: 3px;
+  }
+}
+
 body {
   background-color: #e9e9f5;
 }
@@ -49,7 +95,7 @@ body {
 .items-area a {
   width: 40%;
   height: 100%;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: black;
   display: flex;
   text-align: center;
@@ -73,7 +119,7 @@ body {
 }
 
 .nav .login-area button {
-  font-size: 18px;
+  font-size: 1.8rem;
   border: none;
   background-color: #3b5fff;
   color: white;
@@ -83,9 +129,14 @@ body {
   cursor: pointer;
 }
 
+main {
+  width: 98%;
+  margin: auto;
+}
+
 #banner {
   position: relative;
-  width: 98%;
+  width: 100%;
   height: 768px;
   overflow: hidden;
   margin: auto;
@@ -186,7 +237,7 @@ body {
   height: 100%;
   font-family: simsun;
   font-weight: 1000;
-  font-size: 50px;
+  font-size: 5rem;
   color: #f85656;
   text-align: center;
   display: flex;
@@ -219,7 +270,7 @@ body {
 
 .select-module {
   background-color: #dedcf1;
-  width: 98%;
+  width: 100%;
   margin: auto;
   padding-bottom: 3px;
 }
@@ -228,7 +279,7 @@ body {
   outline: none;
   border: none;
   font-family: "SimHei";
-  font-size: 20px;
+  font-size: 2rem;
   background-color: #cecdda;
   cursor: pointer;
   padding: 5px 10px;
@@ -240,10 +291,16 @@ body {
 }
 
 .title {
+  width: 30%;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  font-size: 36px;
-  padding: 2% 0;
+  font-size: 3.6rem;
+  padding: 2% 0 0 0;
+}
+
+.title img {
+  width: 10%;
 }
 
 .learn-items {
@@ -251,21 +308,161 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  transition: all 500ms;
   cursor: pointer;
+  margin: 2% 0 0 0;
 }
 
-.learn-items p {
+.learn-item {
+  width: 20%;
+  min-width: 230px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.learn-item p {
   text-align: center;
-  font-size: large;
+  padding-top: 1%;
+  font-size: 2rem;
 }
 
-.learn-items img:hover {
+.learn-item img {
+  width: 100%;
+  transition: all ease-in 400ms;
+}
+
+.learn-item img:hover {
   box-shadow: 0px 0px 15px #888888;
-  width: 105%;
+  transform: scale(1.02);
 }
 
 .science-area {
   width: 95%;
   margin: auto;
+}
+
+.science-items {
+  width: 80%;
+  margin: auto;
+}
+
+.science-item {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 2% 0;
+  margin-top: 5%;
+}
+
+.science-item {
+  transition: all ease-in 400ms;
+}
+
+.science-item:hover {
+  box-shadow: 0px 0px 15px #888888;
+  transform: scale(1.02);
+}
+
+.science-img {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.science-img img {
+  width: 90%;
+}
+
+.science-text {
+  width: 70%;
+}
+
+.science-text p:nth-child(1) {
+  width: 85%;
+  margin: auto;
+  font-size: 3rem;
+}
+
+.science-text p:nth-child(2) {
+  width: 85%;
+  margin: auto;
+  text-indent: 2em;
+  font-size: 2.1rem;
+  margin-top: 3%;
+  line-height: 200%;
+}
+
+.science-more {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1%;
+  font-size: 2rem;
+}
+
+.info-area {
+  background: url("../../assets/images/about1.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  margin: auto;
+  margin-top: 3%;
+}
+
+.info-area p {
+  font-size: 2.5rem;
+  padding: 5%;
+  color: white;
+  text-indent: 2em;
+  line-height: 300%;
+}
+
+.contact-area {
+  width: 100%;
+  margin: 2% auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contact-info p {
+  font-size: 2.5rem;
+  line-height: 200%;
+}
+
+.contact-info p:nth-child(2),
+.contact-info p:nth-child(3) {
+  text-indent: 2em;
+}
+
+.contact-img {
+  width: 15%;
+  min-width: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-img img {
+  width: 100%;
+}
+
+.contact-img p {
+  text-align: center;
+  font-size: 2rem;
+}
+
+footer {
+  text-align: center;
+  background-color: #dedcf1;
+}
+
+footer > p {
+  font-size: 2rem;
+  padding: 1%;
 }
