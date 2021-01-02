@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science</title>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/vue.js"></script>
+
+    <link rel="stylesheet" href="src/css/structure&banner.css">
+    <link rel="stylesheet" href="src/css/science.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="logo-area"></div>
+        <div class="items-area">
+            <div><a id="active-item">首页</a></div>
+            <div><a>关于网站</a></div>
+            <div><a>关于我们</a></div>
+            <div><a>资源下载</a></div>
+        </div>
+        <div class="login-area">
+            <button id="show-login">登录</button>
+        </div>
+    </nav>
+
+    <main>
+        <div id="banner">
+            <transition-group tag="ul" class="images-area" :name="direction">
+                <li v-for="(list,index) in imagelist" :key="list.id" v-show="index===currentIndex"
+                    @mouseenter="clearTimer" @mouseleave="startTimer">
+                    <a :href="list.clickUrl">
+                        <img id="banner-img" :src="list.image" :alt="list.desc" width="100%;">
+                    </a>
+                </li>
+            </transition-group>
+            <div class="select-dot">
+                <ul>
+                    <li v-for="(items,index) in imagelist" :key="index" @click='gotoimage(index), clearTimer()'
+                        :class="['dot',{'Selected':currentIndex == index}]"></li>
+                </ul>
+            </div>
+            <div class="sidebar sidebar-left" @click='gotoimage(preIndex), clearTimer()'>&lt;</div>
+            <div class="sidebar sidebar-right" @click='gotoimage(nextIndex), clearTimer()'>&gt;</div>
+        </div>
+
+        <div class="select-module">
+            <button>学习天地</button>
+            <button>科普中心</button>
+        </div>
+
+        <div class="science-area">
+            <div class="title">
+                <div><img src="assets/images/zoom-logo.png" alt="放大镜"></div>
+                <p>科普中心 ———</p>
+            </div>
+            <div class="sub-title">狐说科普网科普中心</div>
+            <div class="science-items">
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-geography.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>来看看这些地理小知识，你知道几个呢？</p>
+                        <p> 1、非洲的冬天很冷的，不要只看经纬度，却忘了海拔。
+                            2、贝加尔湖是世界最深的湖泊，最大深度可达到1642米，平均深度758米，水体总容积23600立方千米，相当于北美洲五大湖水量的总和，超过整个波罗的海的...<a>[更多]</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-animal.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>这些有趣的动物冷知识，你听说过吗？</p>
+                        <p>1、河马的汗水就是天然的防晒乳 2 、蝌蚪宝宝比他老爸妈还要巨大（网友补充：这是一种特别的青蛙叫做“Paradoxical Frog”，只有这种青蛙的蝌蚪才会比爸妈大喔） 3、
+                            长颈鹿的舌头可以舔到自己耳...<a>[更多]</a></p>
+                    </div>
+                </div>
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-body.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>你的体内还蕴藏着这些奥秘，你看过哪些？</p>
+                        <p>1、每三四天，胃里就会更换一次内衬粘膜,胃里边的内表面所拥有的内衬粘膜被称为胃粘膜。粘膜总是被一层高大的柱状上皮细胞分泌的粘液覆盖。胃粘液是一种糖蛋白，具有两个作用：润滑食物团以促进胃内的...<a>[更多]</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-space.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>关于宇宙的10种冷知识，绝对有你意想不到的！</p>
+                        <p>1、如果两块金属在太空中接触，它们会融合成一块，这称为“冷焊”或者说是“接触焊接”，这不会在地球上发生，因为空气在金属表面形成一层氧化物，让焊接作用不会发生，这看上去对卫星空间站穿梭机来说...<a>[更多]</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="science-item">
+                    <div class="science-img">
+                        <img src="assets/images/bg-plant.png" />
+                    </div>
+                    <div class="science-text">
+                        <p>关于植物的10个冷知识，你知道多少？</p>
+                        <p> 1、油漆过敏的人不能吃芒果。芒果属于漆树科植物，含有单羟基苯或二羟基苯成分，和平时油漆中所含的成分有些类似，当对油漆过敏的人吃了芒果后这些物质就会对他造成刺激作用，特别容易引起过敏。2、蚊...<a>[更多]</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>@狐说八道组</p>
+    </footer>
+
+</body>
+
+<script>
+    var banner = new Vue({
+        el: "#banner",
+        data: {
+            imagelist: [
+                { id: 0, clickUrl: "#", desc: "marqueen1", image: "assets/images/marquee1.png" },
+                { id: 1, clickUrl: "#", desc: "marqueen2", image: "assets/images/marquee2.png" },
+                { id: 2, clickUrl: "#", desc: "marqueen3", image: "assets/images/marquee3.png" },
+            ],
+            currentIndex: 0,
+            timer: null,
+            direction: "left",
+        },
+        methods: {
+            autoswitch() {
+                this.timer = setInterval(() => {
+                    this.direction = "left";
+                    this.gotoimage(this.nextIndex);
+                }, 2000);
+            },
+            gotoimage(index) {
+                if (index > this.currentIndex) {
+                    this.direction = "left";
+                } else {
+                    this.direction = "right";
+                }
+                if (this.currentIndex == 0 && index == this.imagelist.length - 1) {
+                    this.direction = "right";
+                }
+                if (this.currentIndex == this.imagelist.length - 1 && index == 0) {
+                    this.direction = "left";
+                }
+                this.currentIndex = index;
+            },
+            clearTimer() {
+                clearInterval(this.timer);
+            },
+            startTimer() {
+                this.autoswitch();
+            },
+        },
+        computed: {
+            preIndex() {
+                this.direction = "right";
+                if (this.currentIndex == 0) {
+                    return this.imagelist.length - 1;
+                } else {
+                    return this.currentIndex - 1;
+                }
+            },
+            nextIndex() {
+                this.direction = "left";
+                if (this.currentIndex == this.imagelist.length - 1) {
+                    return 0;
+                } else {
+                    return this.currentIndex + 1;
+                }
+            },
+        },
+        mounted: function () {
+            this.autoswitch();
+        },
+    });
+
+    $(window).resize(function () {
+        let imgWidth = $('#banner-img').width()
+        let imgHeight = imgWidth / 2.96
+        $('#banner').css('height', imgHeight)
+    })
+
+    $(window).ready(() => {
+        let imgWidth = $('#banner-img').width()
+        let imgHeight = imgWidth / 2.96
+        $('#banner').css('height', imgHeight)
+    })
+</script>
+
+</html>

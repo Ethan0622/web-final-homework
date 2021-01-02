@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: #e9e9f5;
+}
+
+main {
+  width: 98%;
+  margin: auto;
+}
+
+.select-module {
+  background-color: #dedcf1;
+  width: 100%;
+  margin: auto;
+  padding-bottom: 3px;
+}
+
+.select-module button {
+  outline: none;
+  border: none;
+  font-family: "SimHei";
+  font-size: 2rem;
+  background-color: #cecdda;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.learn-area {
+  background-color: white;
+  width: 65%;
+  margin: auto;
+  padding: 2% 5%;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  font-size: 2.2rem;
+  border-bottom: 2px solid;
+}
+
+.title > div {
+  width: 3%;
+}
+
+.title > div > img {
+  width: 100%;
+}
+
+.title p {
+    margin-left: 2%;
+}
+
+.sub-title {
+  color: #7794fe;
+  font-size: 3.6rem;
+  border-bottom: 2px solid black;
+  padding-top: 2%;
+}
+
+.learn-items {
+  width: 100%;
+  margin: auto;
+}
+
+.learn-item {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 2% 0;
+  margin-top: 5%;
+}
+
+.learn-item {
+  transition: all ease-in 400ms;
+}
+
+.learn-item:hover {
+  box-shadow: 0px 0px 15px #888888;
+  transform: scale(1.02);
+}
+
+.learn-img {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.learn-img img {
+  width: 90%;
+}
+
+.learn-text {
+  width: 70%;
+}
+
+.learn-text p:nth-child(1) {
+  width: 85%;
+  margin: auto;
+  font-size: 3rem;
+}
+
+.learn-text p:nth-child(2) {
+  width: 85%;
+  margin: auto;
+  text-indent: 2em;
+  font-size: 2.1rem;
+  margin-top: 3%;
+  line-height: 200%;
+}
